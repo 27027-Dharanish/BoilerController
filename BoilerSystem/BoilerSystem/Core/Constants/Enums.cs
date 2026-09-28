@@ -46,14 +46,39 @@ namespace BoilerSystem.Core.Constants
         /// </summary>
         Closed,
     }
+
+    /// <summary>
+    /// The menu item.
+    /// </summary>
     public enum MenuItem
     {
+        /// <summary>
+        /// Specifies starting the boiler.
+        /// </summary>
         StartBoiler = 1,
+        /// <summary>
+        /// Specifies stopping the boiler.
+        /// </summary>
         StopBoiler,
+        /// <summary>
+        /// specifies stimulating error in boiler while running.
+        /// </summary>
         StimulateError,
+        /// <summary>
+        /// Specifies toggle the interlock switch.
+        /// </summary>
         ToggleSwitch,
+        /// <summary>
+        /// Specifies the resetting of boiler.
+        /// </summary>
         Reset,
+        /// <summary>
+        /// Specifies viewing the log.
+        /// </summary>
         ViewLog,
+        /// <summary>
+        /// Specifies exiting from the application.
+        /// </summary>
         Exit,
     }
     public enum Colors

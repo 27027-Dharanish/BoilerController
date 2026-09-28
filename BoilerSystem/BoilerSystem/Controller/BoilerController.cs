@@ -22,8 +22,8 @@ namespace BoilerSystem.Controller
         /// </summary>
         public void Start()
         {
-            ConsoleActivity.PrintInConsole("\n\n\n\n\n\n\n\n\n" + new string(' ', 40) + "Welcome");
-            Thread.Sleep(3000);
+            /// This delay just to give user some time to the user to switch full screen.
+            Thread.Sleep(2000);
             this._boilerService.InitialSetUp();
             MenuItem userChoice;
             do

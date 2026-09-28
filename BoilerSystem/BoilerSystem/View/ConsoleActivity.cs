@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BoilerSystem.Core.Constants;
+﻿using BoilerSystem.Core.Constants;
 
 namespace BoilerSystem.View
 {
@@ -27,11 +22,6 @@ namespace BoilerSystem.View
             {
                 int leftWidth = Console.WindowWidth / 2;
                 Console.SetCursorPosition(0, _currentRow);
-                if (content.Length > leftWidth)
-                {
-                    content = content[..leftWidth];
-                }
-
                 Console.Write(content.PadRight(leftWidth));
                 _currentRow++;
             }
