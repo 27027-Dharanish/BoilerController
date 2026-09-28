@@ -1,4 +1,5 @@
 ﻿using BoilerSystem.Core.Constants;
+using BoilerSystem.Core.Interface;
 using BoilerSystem.Core.Model;
 
 namespace BoilerSystem.Repository
@@ -7,6 +8,7 @@ namespace BoilerSystem.Repository
     /// Provides a centralized data repository for storing, retrieving boiler entities.
     /// </summary>
     public class BoilerRepository
+        : IBoilerRepository
     {
         private readonly Boiler _boiler;
         private readonly object _locker;
