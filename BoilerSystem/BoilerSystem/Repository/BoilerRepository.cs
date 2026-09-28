@@ -1,4 +1,5 @@
 ﻿using BoilerSystem.Core.Constants;
+using BoilerSystem.Core.Interface;
 using BoilerSystem.Core.Model;
 
 namespace BoilerSystem.Repository
@@ -7,14 +8,20 @@ namespace BoilerSystem.Repository
     /// Provides a centralized data repository for storing, retrieving boiler entities.
     /// </summary>
     public class BoilerRepository
+        : IBoilerRepository
     {
         private readonly Boiler _boiler;
         private readonly object _locker;
+        /// <summary>
+        /// Todo : Summary
+        /// </summary>
         public BoilerRepository()
         {
             this._boiler = new Boiler();
             this._locker = new object();
         }
+
+        /// <inheritdoc>
         public void SetBoilerStatus(BoilerStatus status)
         {
             lock(_locker)
@@ -41,6 +48,13 @@ namespace BoilerSystem.Repository
             lock (_locker)
             {
                 return this._boiler.SwitchStatus;
+            }
+        }
+        public void SetResetDone(bool flag)
+        {
+            lock(_locker)
+            {
+                this._boiler.IsResetDone = flag;
             }
         }
         public bool IsResetDone()

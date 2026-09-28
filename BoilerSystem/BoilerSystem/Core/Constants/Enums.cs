@@ -46,4 +46,14 @@ namespace BoilerSystem.Core.Constants
         /// </summary>
         Closed,
     }
+    public enum MenuItem
+    {
+        StartBoiler = 1,
+        StopBoiler,
+        StimulateError,
+        ToggleSwitch,
+        Reset,
+        ViewLog,
+        Exit,
+    }
 }
