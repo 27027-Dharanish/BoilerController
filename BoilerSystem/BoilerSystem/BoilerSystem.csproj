@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Interface\" />
-    <Folder Include="Core\Constants\" />
-    <Folder Include="Core\Model\" />
   </ItemGroup>
 
 </Project>
