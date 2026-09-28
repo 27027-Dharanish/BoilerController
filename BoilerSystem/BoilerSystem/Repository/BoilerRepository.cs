@@ -15,19 +15,48 @@ namespace BoilerSystem.Repository
             this._boiler = new Boiler();
             this._locker = new object();
         }
-        public void ChangeBoilerStatus(BoilerStatus status)
+        public void SetBoilerStatus(BoilerStatus status)
         {
             lock(_locker)
             {
                 this._boiler.BoilerStatus = status;
             }
         }
-        public void ChangeSwitchStatus(SwitchStatus status)
+        public void SetSwitchStatus(SwitchStatus status)
         {
             lock(_locker)
             {
                 this._boiler.SwitchStatus = status;
             }
+        }
+        public BoilerStatus GetBoilerStatus()
+        {
+            lock (_locker)
+            {
+                return this._boiler.BoilerStatus;
+            }
+        }
+        public SwitchStatus GetSwitchStatus()
+        {
+            lock (_locker)
+            {
+                return this._boiler.SwitchStatus;
+            }
+        }
+        public bool IsResetDone()
+        {
+            lock (_locker)
+            {
+                return this._boiler.IsResetDone;
+            }
+        }
+        public TimeSpan GetIgnitionTime()
+        {
+            return this._boiler.IgnitionTime;
+        }
+        public TimeSpan GetPrePurgeTime()
+        {
+            return this._boiler.PrePlugeTime;
         }
     }
 }

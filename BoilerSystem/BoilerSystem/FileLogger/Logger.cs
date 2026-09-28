@@ -1,15 +1,15 @@
 ﻿using System.Threading;
 
-namespace BoilerSystem.Logger
+namespace BoilerSystem.FileLogger
 {
-    public static class Logger
+    public class Logger
     {
-        private static readonly string _filePath = "logger.csv";
-        private static readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private static CancellationToken token = default;
-        private static Task<string> content;
+        private  readonly string _filePath = "logger.csv";
+        private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
+        private CancellationToken token = default;
+        private Task<string> content;
 
-        public static async Task LogAsync(string message)
+        public async Task LogAsync(string message)
         {
             string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
 
@@ -23,7 +23,7 @@ namespace BoilerSystem.Logger
                 _lock.Release();
             }
         }
-        public static async Task<string> GetLogAsync()
+        public async Task<string> GetLogAsync()
         {
             await _lock.WaitAsync();
             try
