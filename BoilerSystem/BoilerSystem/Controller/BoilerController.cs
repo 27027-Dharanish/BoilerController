@@ -22,42 +22,51 @@ namespace BoilerSystem.Controller
         /// </summary>
         public void Start()
         {
-            /// This delay just to give user some time to the user to switch full screen.
-            Thread.Sleep(2000);
-            this._boilerService.InitialSetUp();
-            MenuItem userChoice;
-            do
+            try
             {
-                ConsoleActivity.ShowMenu("Boiler Controller System", new[] { "Start Boiler Sequence", "Stop Boiler Sequence", "Stimulate Boiler Error", "Toggle Run Interlock Switch", "Reset Boiler", "View Event Log", "Exit" });
-                userChoice = (MenuItem)ConsoleActivity.GetIntegerInput("option to perform");
-                switch(userChoice)
+                /// This delay just to give user some time to the user to switch full screen.
+                Thread.Sleep(2000);
+                this._boilerService.InitialSetUp();
+                MenuItem userChoice;
+                do
                 {
-                    case MenuItem.StartBoiler:
-                        this.StartBoilerSequence();
-                        break;
-                    case MenuItem.StopBoiler:
-                        this.StopBoilerSequence();
-                        break;
-                    case MenuItem.StimulateError:
-                        this.StimulateBoilerError();
-                        break;
-                    case MenuItem.ToggleSwitch:
-                        this.ToggleInterlockSwitch();
-                        break;
-                    case MenuItem.Reset:
-                        this.ResetBoiler();
-                        break;
-                    case MenuItem.ViewLog:
-                        this.ViewLog();
-                        break;
-                    case MenuItem.Exit:
-                        break;
-                    default:
-                        ConsoleActivity.PrintAndWait("Select a valid operation [1-7]");
-                        break;
+
+                    ConsoleActivity.ShowMenu("Boiler Controller System", new[] { "Start Boiler Sequence", "Stop Boiler Sequence", "Stimulate Boiler Error", "Toggle Run Interlock Switch", "Reset Boiler", "View Event Log", "Exit" });
+                    userChoice = (MenuItem)ConsoleActivity.GetIntegerInput("option to perform");
+                    switch (userChoice)
+                    {
+                        case MenuItem.StartBoiler:
+                            this.StartBoilerSequence();
+                            break;
+                        case MenuItem.StopBoiler:
+                            this.StopBoilerSequence();
+                            break;
+                        case MenuItem.StimulateError:
+                            this.StimulateBoilerError();
+                            break;
+                        case MenuItem.ToggleSwitch:
+                            this.ToggleInterlockSwitch();
+                            break;
+                        case MenuItem.Reset:
+                            this.ResetBoiler();
+                            break;
+                        case MenuItem.ViewLog:
+                            this.ViewLog();
+                            break;
+                        case MenuItem.Exit:
+                            break;
+                        default:
+                            ConsoleActivity.PrintAndWait("Select a valid operation [1-7]");
+                            break;
+                    }
                 }
+                while (userChoice != MenuItem.Exit);
             }
-            while(userChoice != MenuItem.Exit);
+            catch (Exception ex)
+            {
+                ConsoleActivity.PrintAndWait(ex.Message);
+            }
+            
         }
         private async void StartBoilerSequence()
         {
