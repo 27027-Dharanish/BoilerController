@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BoilerSystem.Core.Constants
+﻿namespace BoilerSystem.Core.Constants
 {
     /// <summary>
     /// The boiler status.
@@ -15,18 +9,22 @@ namespace BoilerSystem.Core.Constants
         /// Specifies the lockout state.
         /// </summary>
         Lockout = 1,
+
         /// <summary>
         /// Specifies the ready state.
         /// </summary>
         Ready,
+
         /// <summary>
         /// Specifies the Pre purge state.
         /// </summary>
         PrePurge,
+
         /// <summary>
         /// Specifies the ignition state.
         /// </summary>
         Ignition,
+
         /// <summary>
         /// Specifies the operational state.
         /// </summary>
@@ -41,6 +39,7 @@ namespace BoilerSystem.Core.Constants
         /// Specifies switch is open.
         /// </summary>
         Open = 1,
+
         /// <summary>
         /// Specifies switch is close.
         /// </summary>
@@ -56,35 +55,56 @@ namespace BoilerSystem.Core.Constants
         /// Specifies starting the boiler.
         /// </summary>
         StartBoiler = 1,
+
         /// <summary>
         /// Specifies stopping the boiler.
         /// </summary>
         StopBoiler,
+
         /// <summary>
         /// specifies stimulating error in boiler while running.
         /// </summary>
         StimulateError,
+
         /// <summary>
         /// Specifies toggle the interlock switch.
         /// </summary>
         ToggleSwitch,
+
         /// <summary>
         /// Specifies the resetting of boiler.
         /// </summary>
         Reset,
+
         /// <summary>
         /// Specifies viewing the log.
         /// </summary>
         ViewLog,
+
         /// <summary>
         /// Specifies exiting from the application.
         /// </summary>
         Exit,
     }
+
+    /// <summary>
+    /// The color of the notification to be printed.
+    /// </summary>
     public enum Colors
     {
+        /// <summary>
+        /// Specifies red color.
+        /// </summary>
         red,
+
+        /// <summary>
+        /// Specifies green color.
+        /// </summary>
         green,
+
+        /// <summary>
+        /// Specifies yellow color.
+        /// </summary>
         yellow,
     }
 }

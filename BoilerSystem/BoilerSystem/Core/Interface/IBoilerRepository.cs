@@ -2,6 +2,9 @@
 
 namespace BoilerSystem.Core.Interface
 {
+    /// <summary>
+    /// Interface for the boiler repository.
+    /// </summary>
     public interface IBoilerRepository
     {
         /// <summary>

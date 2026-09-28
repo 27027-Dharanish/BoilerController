@@ -4,6 +4,9 @@ using BoilerSystem.Repository;
 
 namespace BoilerSystem.Service
 {
+    /// <summary>
+    /// Coordinate the business logic for the boiler controller system.
+    /// </summary>
     public class BoilerService
         : IBoilerService
     {

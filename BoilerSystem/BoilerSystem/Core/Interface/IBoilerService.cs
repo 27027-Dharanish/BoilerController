@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BoilerSystem.Core.Interface
+﻿namespace BoilerSystem.Core.Interface
 {
+    /// <summary>
+    /// Interface for the boiler service.
+    /// </summary>
     public interface IBoilerService
     {
         /// <summary>

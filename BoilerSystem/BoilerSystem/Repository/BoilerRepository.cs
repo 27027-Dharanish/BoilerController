@@ -13,7 +13,7 @@ namespace BoilerSystem.Repository
         private readonly Boiler _boiler;
         private readonly object _locker;
         /// <summary>
-        /// Todo : Summary
+        /// Todo : Summary for constructor.
         /// </summary>
         public BoilerRepository()
         {

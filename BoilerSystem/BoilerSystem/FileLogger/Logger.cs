@@ -9,7 +9,7 @@ namespace BoilerSystem.FileLogger
     {
         private  readonly string _filePath = "logger.csv";
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private Task<string> content;
+        private Task<string>? content;
 
         /// <summary>
         /// Write the log in the file.
