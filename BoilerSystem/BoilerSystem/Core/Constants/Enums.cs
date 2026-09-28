@@ -56,4 +56,10 @@ namespace BoilerSystem.Core.Constants
         ViewLog,
         Exit,
     }
+    public enum Colors
+    {
+        red,
+        green,
+        yellow,
+    }
 }

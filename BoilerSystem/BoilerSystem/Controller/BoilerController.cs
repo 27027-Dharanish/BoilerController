@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BoilerSystem.Core.Constants;
+﻿using BoilerSystem.Core.Constants;
 using BoilerSystem.Core.Interface;
 using BoilerSystem.Service;
 using BoilerSystem.View;
 
 namespace BoilerSystem.Controller
 {
-    /// Todo : Summary
     public class BoilerController
     {
         private readonly IBoilerService _boilerService;
@@ -28,6 +22,8 @@ namespace BoilerSystem.Controller
         /// </summary>
         public void Start()
         {
+            ConsoleActivity.PrintInConsole("\n\n\n\n\n\n\n\n\n" + new string(' ', 40) + "Welcome");
+            Thread.Sleep(3000);
             this._boilerService.InitialSetUp();
             MenuItem userChoice;
             do
@@ -85,12 +81,22 @@ namespace BoilerSystem.Controller
         }
         private void ViewLog()
         {
-            string[] lines = this._loggerService.GetAllLog().Result;
-            foreach (string line in lines)
-            { 
-                Console.WriteLine(line);
+            string[] lines =this._loggerService.GetAllLog().Result;
+            if (lines.Length == 0)
+            {
+                ConsoleActivity.PrintAndWait("No logs present !!");
+                return;
             }
-            ConsoleActivity.WaitInConsole();
+
+            ConsoleActivity.PrintLog(lines);
+
+        }
+        /// <summary>
+        /// ToDo : Dashboard showing the machine status, interlock switch status and overall machine status.
+        /// </summary>
+        private void DashBoard()
+        {
+
         }
     }
 }

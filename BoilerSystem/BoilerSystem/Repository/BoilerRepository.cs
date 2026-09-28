@@ -29,6 +29,8 @@ namespace BoilerSystem.Repository
                 this._boiler.BoilerStatus = status;
             }
         }
+
+        /// <inheritdoc>
         public void SetSwitchStatus(SwitchStatus status)
         {
             lock(_locker)
@@ -36,6 +38,8 @@ namespace BoilerSystem.Repository
                 this._boiler.SwitchStatus = status;
             }
         }
+
+        /// <inheritdoc>
         public BoilerStatus GetBoilerStatus()
         {
             lock (_locker)
@@ -43,6 +47,8 @@ namespace BoilerSystem.Repository
                 return this._boiler.BoilerStatus;
             }
         }
+
+        /// <inheritdoc>
         public SwitchStatus GetSwitchStatus()
         {
             lock (_locker)
@@ -50,6 +56,8 @@ namespace BoilerSystem.Repository
                 return this._boiler.SwitchStatus;
             }
         }
+
+        /// <inheritdoc>
         public void SetResetDone(bool flag)
         {
             lock(_locker)
@@ -57,6 +65,8 @@ namespace BoilerSystem.Repository
                 this._boiler.IsResetDone = flag;
             }
         }
+
+        /// <inheritdoc>
         public bool IsResetDone()
         {
             lock (_locker)
@@ -64,13 +74,17 @@ namespace BoilerSystem.Repository
                 return this._boiler.IsResetDone;
             }
         }
+
+        /// <inheritdoc>
         public TimeSpan GetIgnitionTime()
         {
             return this._boiler.IgnitionTime;
         }
+
+        /// <inheritdoc>
         public TimeSpan GetPrePurgeTime()
         {
-            return this._boiler.PrePlugeTime;
+            return this._boiler.PrePurgeTime;
         }
     }
 }

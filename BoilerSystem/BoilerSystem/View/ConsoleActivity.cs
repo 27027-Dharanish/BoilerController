@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BoilerSystem.Core.Constants;
 
 namespace BoilerSystem.View
 {
@@ -186,7 +187,7 @@ namespace BoilerSystem.View
         /// <summary>
         /// Display notification on the right side.
         /// </summary>
-        public static void DisplayNotification(string message, string color)
+        public static void DisplayNotification(string message, Colors color)
         {
             lock (_lock)
             {
@@ -195,7 +196,26 @@ namespace BoilerSystem.View
                 Console.SetCursorPosition(notificationColumn, _notificationRow);
                 string notification = $"[Notification] :{message}";
                 int availableWidth = Console.WindowWidth - notificationColumn;
-                Console.WriteLine(notification);
+                switch(color)
+                {
+                    case Colors.green:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(notification);
+                        break;
+                    case Colors.red:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(notification);
+                        break;
+                    case Colors.yellow:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(notification, ConsoleColor.Yellow);
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(notification, ConsoleColor.White);
+                        break;
+                }
+
                 Console.ResetColor();
                 _notificationRow++;
                 if (_notificationRow >= Console.WindowHeight)
@@ -207,24 +227,14 @@ namespace BoilerSystem.View
             }
         }
 
-        ///// <summary>
-        ///// Display patient information in table format.
-        ///// </summary>
-        //public static void DisplayPatients(List<Patient> patients)
-        //{
-        //    PrintInConsole("---------------------------------------------------");
-        //    PrintInConsole($"{"ID",-5} {"Name",-10} {"Treatment",-10}");
-        //    PrintInConsole("---------------------------------------------------");
-        //    int i = 1;
-        //    foreach (Patient patient in patients)
-        //    {
-        //        PrintInConsole(
-        //            $"{i++,-5} " +
-        //            $"{patient.PatientName,-10} " +
-        //            $"{patient.Treatment,-10}");
-        //    }
-
-        //    PrintInConsole("---------------------------------------------------");
-        //}
+        public static void PrintLog(string[] lines)
+        {
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+            ConsoleActivity.WaitInConsole();
+            ConsoleActivity.ClearConsole();
+        }
     }
 }

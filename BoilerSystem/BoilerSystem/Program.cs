@@ -16,7 +16,7 @@ namespace BoilerSystem
         /// </summary>
         public static void Main()
         {
-            BoilerRepository boilerRepository = new BoilerRepository();
+            IBoilerRepository boilerRepository = new BoilerRepository();
             Logger logger = new Logger();
             NotificationService notificationService = new NotificationService();
             LoggerService loggerService = new LoggerService(logger);
