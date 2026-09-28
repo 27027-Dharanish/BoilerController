@@ -91,12 +91,5 @@ namespace BoilerSystem.Controller
             ConsoleActivity.PrintLog(lines);
 
         }
-        /// <summary>
-        /// ToDo : Dashboard showing the machine status, interlock switch status and overall machine status.
-        /// </summary>
-        private void DashBoard()
-        {
-
-        }
     }
 }

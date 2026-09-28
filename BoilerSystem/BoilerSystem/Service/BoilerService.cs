@@ -87,26 +87,18 @@ namespace BoilerSystem.Service
                 this._boilerRepository.SetBoilerStatus(BoilerStatus.Ready);
                 this._boilerCancellationTokenSource = null;
             }
-            finally
-            {
-            }
         }
 
         /// <inheritdoc>
         public void StopBoiler()
         {
-            if(this._boilerRepository.GetBoilerStatus() == BoilerStatus.Operational && _boilerCancellationTokenSource != null)
+            if(_boilerCancellationTokenSource != null)
             {
-                _boilerCancellationTokenSource.Cancel();
-                this._boilerCancellationTokenSource = null;
                 this._notificationService.Execute("Boiler stopped....", Colors.yellow);
                 this._loggerService.Execute("Trying to stop the boiler", DateTime.Now);
-            }
-            else if(_boilerCancellationTokenSource != null)
-            {
-                this._notificationService.Execute("Stopping the boiler...", Colors.yellow);
-                this._loggerService.Execute("Trying to stop the boiler", DateTime.Now);
                 _boilerCancellationTokenSource.Cancel();
+                this._boilerRepository.SetBoilerStatus(BoilerStatus.Ready);
+                this._boilerCancellationTokenSource = null;
             }
             else
             {
@@ -132,7 +124,7 @@ namespace BoilerSystem.Service
                 }
                 else
                 {
-                    this._notificationService.Execute("Unable to stimulate error because boiler is not in operational state", Colors.yellow);
+                    this._notificationService.Execute("Unable to stimulate error because boiler not in operational state", Colors.yellow);
                     this._loggerService.Execute("Error stimulation failed. Reason - Boiler in not in operational state", DateTime.Now);
                 }
             }
@@ -170,7 +162,13 @@ namespace BoilerSystem.Service
         /// <inheritdoc>
         public void ResetBoiler()
         {
-            if (this._boilerRepository.GetSwitchStatus() == SwitchStatus.Open)
+            if (this._boilerCancellationTokenSource != null)
+            {
+                this._notificationService.Execute("[failed] - Cannot reset when boiler is running !!", Colors.red);
+                this._loggerService.Execute("Reset failed. Reason - Boiler is running", DateTime.Now);
+                return;
+            }
+            else if (this._boilerRepository.GetSwitchStatus() == SwitchStatus.Open)
             {
                 this._notificationService.Execute("[Failed] - Close the interlock switch and try again !!", Colors.red);
                 this._notificationService.Execute("Press 5 to toggle the switch", Colors.yellow);
