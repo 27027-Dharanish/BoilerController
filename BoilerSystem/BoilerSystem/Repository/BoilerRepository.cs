@@ -10,11 +10,16 @@ namespace BoilerSystem.Repository
     {
         private readonly Boiler _boiler;
         private readonly object _locker;
+        /// <summary>
+        /// Todo : Summary
+        /// </summary>
         public BoilerRepository()
         {
             this._boiler = new Boiler();
             this._locker = new object();
         }
+
+        /// <inheritdoc>
         public void SetBoilerStatus(BoilerStatus status)
         {
             lock(_locker)
@@ -41,6 +46,13 @@ namespace BoilerSystem.Repository
             lock (_locker)
             {
                 return this._boiler.SwitchStatus;
+            }
+        }
+        public void SetResetDone(bool flag)
+        {
+            lock(_locker)
+            {
+                this._boiler.IsResetDone = flag;
             }
         }
         public bool IsResetDone()

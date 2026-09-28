@@ -10,21 +10,26 @@ namespace BoilerSystem.Service
     public class LoggerService
     {
         private Logger logger;
-        public delegate void Log(string message, DateTime time);
-        public event Log? Logger;
+        public delegate void LogFile(string message, DateTime time);
+        public event LogFile? Log;
         public static int notificationCounter = 0;
         public LoggerService(Logger logger)
         {
             this.logger = logger;
+            this.Log += LogMessage;
         }
         public void Execute(string message, DateTime time)
         {
-            Logger?.Invoke(message, time);
+            Log?.Invoke(message, time);
         }
         public async Task<string[]> GetAllLog()
         {
             string lines =  await logger.GetLogAsync();
-            return lines.Split(",");
+            return lines.Split("\n");
+        }
+        public void LogMessage(string message, DateTime time)
+        {
+            _ = this.logger.LogAsync(message, time);
         }
     }
 }

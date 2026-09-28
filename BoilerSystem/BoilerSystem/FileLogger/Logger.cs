@@ -6,13 +6,11 @@ namespace BoilerSystem.FileLogger
     {
         private  readonly string _filePath = "logger.csv";
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private CancellationToken token = default;
         private Task<string> content;
 
-        public async Task LogAsync(string message)
+        public async Task LogAsync(string message, DateTime time)
         {
-            string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
-
+            string logMessage = $"{time:yyyy-MM-dd HH:mm:ss} - {message}";
             await _lock.WaitAsync();
             try
             {
